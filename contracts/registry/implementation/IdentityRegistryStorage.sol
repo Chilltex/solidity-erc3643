@@ -43,7 +43,7 @@ contract IdentityRegistryStorage is
     }
 
     function initialize() external initializer {
-        __Ownable_init();
+        __AgentRole_init();
     }
 
     /**
