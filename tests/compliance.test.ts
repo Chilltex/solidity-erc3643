@@ -1,5 +1,5 @@
 import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
-import { ethers } from "hardhat";
+import { ethers, upgrades } from "hardhat";
 import { expect } from "chai";
 import {
   deployFullSuiteFixture,
@@ -8,13 +8,13 @@ import {
 } from "./fixtures/deploy-full-suite.fixture";
 
 describe("ModularCompliance", () => {
-  describe(".init", () => {
-    it("should prevent calling init twice", async () => {
+  describe(".initialize", () => {
+    it("should prevent calling initialize twice", async () => {
       const {
         suite: { compliance },
       } = await loadFixture(deploySuiteWithModularCompliancesFixture);
 
-      await expect(compliance.init()).to.be.revertedWith(
+      await expect(compliance.initialize()).to.be.revertedWith(
         "Initializable: contract is already initialized"
       );
     });
@@ -42,11 +42,17 @@ describe("ModularCompliance", () => {
             suite: { token },
           } = await loadFixture(deployFullSuiteFixture);
 
-          const compliance = await ethers.deployContract(
-            "ModularCompliance",
-            deployer
+          const complianceProxy = await upgrades.deployProxy(
+            await ethers.getContractFactory("ModularCompliance", deployer),
+            [],
+            {
+              kind: "transparent",
+            }
           );
-          await compliance.init();
+          const compliance = await ethers.getContractAt(
+            "ModularCompliance",
+            await complianceProxy.getAddress()
+          );
 
           await compliance.bindToken(await token.getAddress());
 
@@ -64,8 +70,17 @@ describe("ModularCompliance", () => {
             suite: { token },
           } = await loadFixture(deployFullSuiteFixture);
 
-          const compliance = await ethers.deployContract("ModularCompliance");
-          await compliance.init();
+          const complianceProxy = await upgrades.deployProxy(
+            await ethers.getContractFactory("ModularCompliance"),
+            [],
+            {
+              kind: "transparent",
+            }
+          );
+          const compliance = await ethers.getContractAt(
+            "ModularCompliance",
+            await complianceProxy.getAddress()
+          );
           await compliance.bindToken(await token.getAddress());
 
           const newCompliance = await ethers.deployContract(
@@ -92,11 +107,17 @@ describe("ModularCompliance", () => {
             accounts: { deployer },
           } = await loadFixture(deployFullSuiteFixture);
 
-          const compliance = await ethers.deployContract(
-            "ModularCompliance",
-            deployer
+          const complianceProxy = await upgrades.deployProxy(
+            await ethers.getContractFactory("ModularCompliance", deployer),
+            [],
+            {
+              kind: "transparent",
+            }
           );
-          await compliance.init();
+          const compliance = await ethers.getContractAt(
+            "ModularCompliance",
+            await complianceProxy.getAddress()
+          );
 
           await expect(
             compliance.bindToken(ethers.ZeroAddress)
@@ -142,11 +163,17 @@ describe("ModularCompliance", () => {
             suite: { token },
           } = await loadFixture(deployFullSuiteFixture);
 
-          const compliance = await ethers.deployContract(
-            "ModularCompliance",
-            deployer
+          const complianceProxy = await upgrades.deployProxy(
+            await ethers.getContractFactory("ModularCompliance", deployer),
+            [],
+            {
+              kind: "transparent",
+            }
           );
-          await compliance.init();
+          const compliance = await ethers.getContractAt(
+            "ModularCompliance",
+            await complianceProxy.getAddress()
+          );
 
           await expect(
             compliance.unbindToken(await token.getAddress())

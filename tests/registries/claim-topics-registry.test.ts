@@ -3,14 +3,14 @@ import { expect } from "chai";
 import { deployFullSuiteFixture } from "../fixtures/deploy-full-suite.fixture";
 
 describe("ClaimTopicsRegistry", () => {
-  describe(".init", () => {
+  describe(".initialize", () => {
     describe("when contract was already initialized", () => {
       it("should revert", async () => {
         const {
           suite: { claimTopicsRegistry },
         } = await loadFixture(deployFullSuiteFixture);
 
-        await expect(claimTopicsRegistry.init()).to.be.revertedWith(
+        await expect(claimTopicsRegistry.initialize()).to.be.revertedWith(
           "Initializable: contract is already initialized"
         );
       });

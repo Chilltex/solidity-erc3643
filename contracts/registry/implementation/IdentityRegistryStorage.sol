@@ -37,7 +37,12 @@ contract IdentityRegistryStorage is
     AgentRoleUpgradeable,
     IRSStorage
 {
-    function init() external initializer {
+    /// @custom:oz-upgrades-unsafe-allow constructor
+    constructor() {
+        _disableInitializers();
+    }
+
+    function initialize() external initializer {
         __Ownable_init();
     }
 

@@ -4,14 +4,14 @@ import { ethers } from "hardhat";
 import { deployFullSuiteFixture } from "../fixtures/deploy-full-suite.fixture";
 
 describe("IdentityRegistryStorage", () => {
-  describe(".init", () => {
+  describe(".initialize", () => {
     describe("when contract was already initialized", () => {
       it("should revert", async () => {
         const {
           suite: { identityRegistryStorage },
         } = await loadFixture(deployFullSuiteFixture);
 
-        await expect(identityRegistryStorage.init()).to.be.revertedWith(
+        await expect(identityRegistryStorage.initialize()).to.be.revertedWith(
           "Initializable: contract is already initialized"
         );
       });

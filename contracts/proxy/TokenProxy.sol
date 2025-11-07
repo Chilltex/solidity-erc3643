@@ -61,7 +61,7 @@ contract TokenProxy is AbstractProxy {
         // solhint-disable-next-line avoid-low-level-calls
         (bool success, ) = logic.delegatecall(
             abi.encodeWithSignature(
-                "init(address,address,string,string,uint8,address)",
+                "initialize(address,address,string,string,uint8,address)",
                 _identityRegistry,
                 _compliance,
                 _name,

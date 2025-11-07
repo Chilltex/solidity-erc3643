@@ -41,6 +41,11 @@ contract IdentityRegistry is
     AgentRoleUpgradeable,
     IRStorage
 {
+    /// @custom:oz-upgrades-unsafe-allow constructor
+    constructor() {
+        _disableInitializers();
+    }
+
     /**
      *  @dev the constructor initiates the Identity Registry smart contract
      *  @param _trustedIssuersRegistry the trusted issuers registry linked to the Identity Registry
@@ -50,7 +55,7 @@ contract IdentityRegistry is
      *  emits a `TrustedIssuersRegistrySet` event
      *  emits an `IdentityStorageSet` event
      */
-    function init(
+    function initialize(
         address _trustedIssuersRegistry,
         address _claimTopicsRegistry,
         address _identityStorage

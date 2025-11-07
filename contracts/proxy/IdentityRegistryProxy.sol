@@ -52,7 +52,7 @@ contract IdentityRegistryProxy is AbstractProxy {
         // solhint-disable-next-line avoid-low-level-calls
         (bool success, ) = logic.delegatecall(
             abi.encodeWithSignature(
-                "init(address,address,address)",
+                "initialize(address,address,address)",
                 _trustedIssuersRegistry,
                 _claimTopicsRegistry,
                 _identityStorage

@@ -1,5 +1,5 @@
-import { Contract, Signer } from "ethers";
-import { ethers } from "hardhat";
+import { Signer } from "ethers";
+import { ethers, upgrades } from "hardhat";
 import OnchainID from "@onchain-id/solidity";
 import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 
@@ -382,8 +382,17 @@ export async function deploySuiteWithModularCompliancesFixture() {
     await complianceProxy.getAddress()
   );
 
-  const complianceBeta = await ethers.deployContract("ModularCompliance");
-  await complianceBeta.init();
+  const complianceBetaProxy = await upgrades.deployProxy(
+    await ethers.getContractFactory("ModularCompliance"),
+    [],
+    {
+      kind: "transparent",
+    }
+  );
+  const complianceBeta = await ethers.getContractAt(
+    "ModularCompliance",
+    await complianceBetaProxy.getAddress()
+  );
 
   return {
     ...context,
@@ -398,8 +407,17 @@ export async function deploySuiteWithModularCompliancesFixture() {
 export async function deploySuiteWithModuleComplianceBoundToWallet() {
   const context = await loadFixture(deployFullSuiteFixture);
 
-  const compliance = await ethers.deployContract("ModularCompliance");
-  await compliance.init();
+  const complianceProxy = await upgrades.deployProxy(
+    await ethers.getContractFactory("ModularCompliance"),
+    [],
+    {
+      kind: "transparent",
+    }
+  );
+  const compliance = await ethers.getContractAt(
+    "ModularCompliance",
+    await complianceProxy.getAddress()
+  );
 
   const complianceModuleA = await ethers.deployContract("TestModule");
   await compliance.addModule(await complianceModuleA.getAddress());

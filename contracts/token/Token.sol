@@ -45,6 +45,11 @@ contract Token is IToken, AgentRoleUpgradeable, TokenStorage {
         _;
     }
 
+    /// @custom:oz-upgrades-unsafe-allow constructor
+    constructor() {
+        _disableInitializers();
+    }
+
     /**
      *  @dev the constructor initiates the token contract
      *  msg.sender is set automatically as the owner of the smart contract
@@ -58,7 +63,7 @@ contract Token is IToken, AgentRoleUpgradeable, TokenStorage {
      *  emits an `IdentityRegistryAdded` event
      *  emits a `ComplianceAdded` event
      */
-    function init(
+    function initialize(
         address _identityRegistry,
         address _compliance,
         string memory _name,
