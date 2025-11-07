@@ -40,9 +40,13 @@ Implementation of ERC-3643 standard (Security Token) for regulated digital asset
 
 All contracts are publicly deployed and can be verified on Sepolia Etherscan:
 
-```
-https://sepolia.etherscan.io/address/{CONTRACT_ADDRESS}
-```
+| Contract | Proxy | Implementation |
+|----------|----------------|----------------|
+| **TrustedIssuersRegistry** | [View on Etherscan](https://sepolia.etherscan.io/address/0x48E4792a59D536Ae5184aB045aF99F73C04FfE47) | [View on Etherscan](https://sepolia.etherscan.io/address/0x24116aabe0245688aAb2b0f279FcDc32E0E8652A) |
+| **ClaimTopicsRegistry** | [View on Etherscan](https://sepolia.etherscan.io/address/0xf492091A0846976DAd7F19ab0A315CaB9C8fc470) | [View on Etherscan](https://sepolia.etherscan.io/address/0x24f081380fe967F29Ea05b4018d768C452047E3F) |
+| **IdentityRegistryStorage** | [View on Etherscan](https://sepolia.etherscan.io/address/0xf0211f02502D451CF7C800A3266E8181F313fD1d) | [View on Etherscan](https://sepolia.etherscan.io/address/0xc339c0a366673d98Ef3e631D8150Bf7FB76F81db) |
+| **IdentityRegistry** | [View on Etherscan](https://sepolia.etherscan.io/address/0xFfafE273EC9C973C46Fa146F9Bb2b6C5c2Dff61B) | [View on Etherscan](https://sepolia.etherscan.io/address/0xb79E418910856A7FFe5C92cAeD01556159f18cd5) |
+| **ModularCompliance** | [View on Etherscan](https://sepolia.etherscan.io/address/0x648431F39142fF3aB52dE54aD55c9D72e79B653c) | [View on Etherscan](https://sepolia.etherscan.io/address/0x53Fb5e9792B36638b5288b620AA833A707838E94) |
 
 ## Technical Features
 
