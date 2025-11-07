@@ -1,0 +1,12 @@
+{
+  "trustedIssuersRegistryProxy": "0x48E4792a59D536Ae5184aB045aF99F73C04FfE47",
+  "trustedIssuersRegistryImplementation": "0x24116aabe0245688aAb2b0f279FcDc32E0E8652A",
+  "claimTopicsRegistryProxy": "0xf492091A0846976DAd7F19ab0A315CaB9C8fc470",
+  "claimTopicsRegistryImplementation": "0x24f081380fe967F29Ea05b4018d768C452047E3F",
+  "identityRegistryStorageProxy": "0xf0211f02502D451CF7C800A3266E8181F313fD1d",
+  "identityRegistryStorageImplementation": "0xc339c0a366673d98Ef3e631D8150Bf7FB76F81db",
+  "identityRegistryProxy": "0xFfafE273EC9C973C46Fa146F9Bb2b6C5c2Dff61B",
+  "identityRegistryImplementation": "0xb79E418910856A7FFe5C92cAeD01556159f18cd5",
+  "modularComplianceProxy": "0x648431F39142fF3aB52dE54aD55c9D72e79B653c",
+  "modularComplianceImplementation": "0x53Fb5e9792B36638b5288b620AA833A707838E94"
+}
