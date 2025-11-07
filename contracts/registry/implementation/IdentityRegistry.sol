@@ -74,7 +74,7 @@ contract IdentityRegistry is
         emit ClaimTopicsRegistrySet(_claimTopicsRegistry);
         emit TrustedIssuersRegistrySet(_trustedIssuersRegistry);
         emit IdentityStorageSet(_identityStorage);
-        __Ownable_init();
+        __AgentRole_init();
     }
 
     /**

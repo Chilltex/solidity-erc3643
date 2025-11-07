@@ -38,6 +38,23 @@ contract AgentRoleUpgradeable is OwnableUpgradeable {
     event AgentAdded(address indexed _agent);
     event AgentRemoved(address indexed _agent);
 
+    /**
+     * @dev Initializer function for AgentRoleUpgradeable
+     * Must be called by child contracts in their initialize function
+     */
+    function __AgentRole_init() internal onlyInitializing {
+        __Ownable_init();
+        __AgentRole_init_unchained();
+    }
+
+    /**
+     * @dev Initializer for AgentRole-specific state
+     * Currently empty as AgentRole has no additional state to initialize
+     */
+    function __AgentRole_init_unchained() internal onlyInitializing {
+        // No additional initialization needed for AgentRole
+    }
+
     modifier onlyAgent() {
         require(
             isAgent(msg.sender),
