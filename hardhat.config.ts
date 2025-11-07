@@ -7,6 +7,8 @@ import type { HardhatUserConfig } from "hardhat/config";
 
 dotenv.config();
 
+import "./tasks";
+
 const config: HardhatUserConfig = {
   defaultNetwork: "hardhat",
   networks: {
