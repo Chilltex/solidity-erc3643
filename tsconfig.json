@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "skipLibCheck": true,
+        "outDir": "dist",
+        "rootDirs": [
+            "./src",
+            "./tasks",
+            "./tests"
+        ],
+        "baseUrl": "."
+    },
+    "exclude": [
+        "dist",
+        "node_modules"
+    ],
+    "include": [
+        "./src/**/*",
+        "./tasks/**/*",
+        "./tests/**/*",
+        "./typechain/**/*"
+    ],
+    "files": [
+        "./hardhat.config.ts",
+        "src/index.ts"
+    ]
+}
