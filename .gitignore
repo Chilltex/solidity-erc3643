@@ -143,5 +143,11 @@ cache/
 artifacts/
 typechain/
 
+# OpenZeppelin deployment data (contains network-specific deployment info)
+.openzeppelin/
+
+# Deployed contract addresses (may contain sensitive deployment information)
+addresses/
+
 # VS Code
 .vscode/
