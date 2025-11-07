@@ -11,8 +11,7 @@
             "./src",
             "./tasks",
             "./tests"
-        ],
-        "baseUrl": "."
+        ]
     },
     "exclude": [
         "dist",

@@ -21,10 +21,13 @@
     "@typechain/ethers-v6": "^0.5.1",
     "@typechain/hardhat": "^9.1.0",
     "@types/node": "^20.14.10",
+    "@types/chai": "^4.3.6",
+    "@types/mocha": "^10.0.2",
+    "chai": "^4.2.0",
     "hardhat": "^2.22.5",
     "ts-node": "^10.9.2",
     "typechain": "^8.3.2",
-    "typescipt": "^1.0.0"
+    "typescript": "^5.2.2"
   },
   "volta": {
     "node": "22.21.1"
