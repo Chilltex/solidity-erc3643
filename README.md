@@ -134,7 +134,7 @@ Key events emitted for regulatory monitoring:
 
 ## Legal Disclaimer
 
-**DEMO ENVIRONMENT**: Deployed on Sepolia testnet for testing purposes only. Not for production use. Test tokens have no monetary value. Conduct independent security audits before mainnet deployment.
+**DEMO ENVIRONMENT**: Deployed on Sepolia testnet for testing purposes only. Test tokens have no monetary value.
 
 ---
 
