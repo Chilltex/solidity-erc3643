@@ -26,39 +26,19 @@
 
 pragma solidity 0.8.17;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
+contract MCStorage {
+    /// token linked to the compliance contract
+    address internal _tokenBound;
 
-import "./Roles.sol";
+    /// Array of modules bound to the compliance
+    address[] internal _modules;
 
-contract AgentRole is Ownable {
-    using Roles for Roles.Role;
+    /// Mapping of module binding status
+    mapping(address => bool) internal _moduleBound;
 
-    Roles.Role private _agents;
-
-    event AgentAdded(address indexed _agent);
-    event AgentRemoved(address indexed _agent);
-
-    modifier onlyAgent() {
-        require(
-            isAgent(msg.sender),
-            "AgentRole: caller does not have the Agent role"
-        );
-        _;
-    }
-
-    function addAgent(address _agent) public onlyOwner {
-        require(_agent != address(0), "invalid argument - zero address");
-        _agents.add(_agent);
-        emit AgentAdded(_agent);
-    }
-
-    function removeAgent(address _agent) public onlyOwner {
-        require(_agent != address(0), "invalid argument - zero address");
-        _agents.remove(_agent);
-        emit AgentRemoved(_agent);
-    }
-
-    function isAgent(address _agent) public view returns (bool) {
-        return _agents.has(_agent);
-    }
+    /**
+     * @dev This empty reserved space is put in place to allow future versions to add new
+     * variables without shifting down storage in the inheritance chain.
+     */
+    uint256[49] private __gap;
 }

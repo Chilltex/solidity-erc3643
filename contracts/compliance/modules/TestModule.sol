@@ -1,41 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0
-//
-//                                             :+#####%%%%%%%%%%%%%%+
-//                                         .-*@@@%+.:+%@@@@@%%#***%@@%=
-//                                     :=*%@@@#=.      :#@@%       *@@@%=
-//                       .-+*%@%*-.:+%@@@@@@+.     -*+:  .=#.       :%@@@%-
-//                   :=*@@@@%%@@@@@@@@@%@@@-   .=#@@@%@%=             =@@@@#.
-//             -=+#%@@%#*=:.  :%@@@@%.   -*@@#*@@@@@@@#=:-              *@@@@+
-//            =@@%=:.     :=:   *@@@@@%#-   =%*%@@@@#+-.        =+       :%@@@%-
-//           -@@%.     .+@@@     =+=-.         @@#-           +@@@%-       =@@@@%:
-//          :@@@.    .+@@#%:                   :    .=*=-::.-%@@@+*@@=       +@@@@#.
-//          %@@:    +@%%*                         =%@@@@@@@@@@@#.  .*@%-       +@@@@*.
-//         #@@=                                .+@@@@%:=*@@@@@-      :%@%:      .*@@@@+
-//        *@@*                                +@@@#-@@%-:%@@*          +@@#.      :%@@@@-
-//       -@@%           .:-=++*##%%%@@@@@@@@@@@@*. :@+.@@@%:            .#@@+       =@@@@#:
-//      .@@@*-+*#%%%@@@@@@@@@@@@@@@@%%#**@@%@@@.   *@=*@@#                :#@%=      .#@@@@#-
-//      -%@@@@@@@@@@@@@@@*+==-:-@@@=    *@# .#@*-=*@@@@%=                 -%@@@*       =@@@@@%-
-//         -+%@@@#.   %@%%=   -@@:+@: -@@*    *@@*-::                   -%@@%=.         .*@@@@@#
-//            *@@@*  +@* *@@##@@-  #@*@@+    -@@=          .         :+@@@#:           .-+@@@%+-
-//             +@@@%*@@:..=@@@@*   .@@@*   .#@#.       .=+-       .=%@@@*.         :+#@@@@*=:
-//              =@@@@%@@@@@@@@@@@@@@@@@@@@@@%-      :+#*.       :*@@@%=.       .=#@@@@%+:
-//               .%@@=                 .....    .=#@@+.       .#@@@*:       -*%@@@@%+.
-//                 +@@#+===---:::...         .=%@@*-         +@@@+.      -*@@@@@%+.
-//                  -@@@@@@@@@@@@@@@@@@@@@@%@@@@=          -@@@+      -#@@@@@#=.
-//                    ..:::---===+++***###%%%@@@#-       .#@@+     -*@@@@@#=.
-//                                           @@@@@@+.   +@@*.   .+@@@@@%=.
-//                                          -@@@@@=   =@@%:   -#@@@@%+.
-//                                          +@@@@@. =@@@=  .+@@@@@*:
-//                                          #@@@@#:%@@#. :*@@@@#-
-//                                          @@@@@%@@@= :#@@@@+.
-//                                         :@@@@@@@#.:#@@@%-
-//                                         +@@@@@@-.*@@@*:
-//                                         #@@@@#.=@@@+.
-//                                         @@@@+-%@%=
-//                                        :@@@#%@%=
-//                                        +@@@@%-
-//                                        :#%%=
-//
+
 /**
  *     NOTICE
  *
@@ -63,11 +27,10 @@
 pragma solidity 0.8.17;
 
 import "../IModularCompliance.sol";
-import "../../../token/IToken.sol";
+import "../../token/IToken.sol";
 import "./AbstractModuleUpgradeable.sol";
 
 contract TestModule is AbstractModuleUpgradeable {
-
     /// state variables
     mapping(address => uint) private _complianceData;
     mapping(address => bool) private _blockedTransfers;
@@ -95,7 +58,11 @@ contract TestModule is AbstractModuleUpgradeable {
      *  no transfer action required in this module
      */
     // solhint-disable-next-line no-empty-blocks
-    function moduleTransferAction(address /*_from*/, address /*_to*/, uint256 /*_value*/) external override onlyComplianceCall {
+    function moduleTransferAction(
+        address /*_from*/,
+        address /*_to*/,
+        uint256 /*_value*/
+    ) external override onlyComplianceCall {
         // Intentionally empty - no transfer action required in this test module
     }
 
@@ -104,7 +71,10 @@ contract TestModule is AbstractModuleUpgradeable {
      *  no mint action required in this module
      */
     // solhint-disable-next-line no-empty-blocks
-    function moduleMintAction(address /*_to*/, uint256 /*_value*/) external override onlyComplianceCall {
+    function moduleMintAction(
+        address /*_to*/,
+        uint256 /*_value*/
+    ) external override onlyComplianceCall {
         // Intentionally empty - no mint action required in this test module
     }
 
@@ -113,7 +83,10 @@ contract TestModule is AbstractModuleUpgradeable {
      *  no burn action required in this module
      */
     // solhint-disable-next-line no-empty-blocks
-    function moduleBurnAction(address /*_from*/, uint256 /*_value*/) external override onlyComplianceCall {
+    function moduleBurnAction(
+        address /*_from*/,
+        uint256 /*_value*/
+    ) external override onlyComplianceCall {
         // Intentionally empty - no burn action required in this test module
     }
 
@@ -127,21 +100,23 @@ contract TestModule is AbstractModuleUpgradeable {
         uint256 /*_value*/,
         address _compliance
     ) external view override returns (bool) {
-        if(_blockedTransfers[_compliance]) {
+        if (_blockedTransfers[_compliance]) {
             return false;
         }
         return true;
     }
 
     /**
-      *  @dev See {IModule-canComplianceBind}.
+     *  @dev See {IModule-canComplianceBind}.
      */
-    function canComplianceBind(address /*_compliance*/) external pure returns (bool) {
+    function canComplianceBind(
+        address /*_compliance*/
+    ) external pure returns (bool) {
         return true;
     }
 
     /**
-      *  @dev See {IModule-isPlugAndPlay}.
+     *  @dev See {IModule-isPlugAndPlay}.
      */
     function isPlugAndPlay() external pure returns (bool) {
         return true;

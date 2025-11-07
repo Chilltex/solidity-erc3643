@@ -1,41 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0
-//
-//                                             :+#####%%%%%%%%%%%%%%+
-//                                         .-*@@@%+.:+%@@@@@%%#***%@@%=
-//                                     :=*%@@@#=.      :#@@%       *@@@%=
-//                       .-+*%@%*-.:+%@@@@@@+.     -*+:  .=#.       :%@@@%-
-//                   :=*@@@@%%@@@@@@@@@%@@@-   .=#@@@%@%=             =@@@@#.
-//             -=+#%@@%#*=:.  :%@@@@%.   -*@@#*@@@@@@@#=:-              *@@@@+
-//            =@@%=:.     :=:   *@@@@@%#-   =%*%@@@@#+-.        =+       :%@@@%-
-//           -@@%.     .+@@@     =+=-.         @@#-           +@@@%-       =@@@@%:
-//          :@@@.    .+@@#%:                   :    .=*=-::.-%@@@+*@@=       +@@@@#.
-//          %@@:    +@%%*                         =%@@@@@@@@@@@#.  .*@%-       +@@@@*.
-//         #@@=                                .+@@@@%:=*@@@@@-      :%@%:      .*@@@@+
-//        *@@*                                +@@@#-@@%-:%@@*          +@@#.      :%@@@@-
-//       -@@%           .:-=++*##%%%@@@@@@@@@@@@*. :@+.@@@%:            .#@@+       =@@@@#:
-//      .@@@*-+*#%%%@@@@@@@@@@@@@@@@%%#**@@%@@@.   *@=*@@#                :#@%=      .#@@@@#-
-//      -%@@@@@@@@@@@@@@@*+==-:-@@@=    *@# .#@*-=*@@@@%=                 -%@@@*       =@@@@@%-
-//         -+%@@@#.   %@%%=   -@@:+@: -@@*    *@@*-::                   -%@@%=.         .*@@@@@#
-//            *@@@*  +@* *@@##@@-  #@*@@+    -@@=          .         :+@@@#:           .-+@@@%+-
-//             +@@@%*@@:..=@@@@*   .@@@*   .#@#.       .=+-       .=%@@@*.         :+#@@@@*=:
-//              =@@@@%@@@@@@@@@@@@@@@@@@@@@@%-      :+#*.       :*@@@%=.       .=#@@@@%+:
-//               .%@@=                 .....    .=#@@+.       .#@@@*:       -*%@@@@%+.
-//                 +@@#+===---:::...         .=%@@*-         +@@@+.      -*@@@@@%+.
-//                  -@@@@@@@@@@@@@@@@@@@@@@%@@@@=          -@@@+      -#@@@@@#=.
-//                    ..:::---===+++***###%%%@@@#-       .#@@+     -*@@@@@#=.
-//                                           @@@@@@+.   +@@*.   .+@@@@@%=.
-//                                          -@@@@@=   =@@%:   -#@@@@%+.
-//                                          +@@@@@. =@@@=  .+@@@@@*:
-//                                          #@@@@#:%@@#. :*@@@@#-
-//                                          @@@@@%@@@= :#@@@@+.
-//                                         :@@@@@@@#.:#@@@%-
-//                                         +@@@@@@-.*@@@*:
-//                                         #@@@@#.=@@@+.
-//                                         @@@@+-%@%=
-//                                        :@@@#%@%=
-//                                        +@@@@%-
-//                                        :#%%=
-//
+
 /**
  *     NOTICE
  *
@@ -67,7 +31,12 @@ import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "./IModule.sol";
 
-abstract contract AbstractModuleUpgradeable is IModule, Initializable, OwnableUpgradeable, UUPSUpgradeable {
+abstract contract AbstractModuleUpgradeable is
+    IModule,
+    Initializable,
+    OwnableUpgradeable,
+    UUPSUpgradeable
+{
     struct AbstractModuleStorage {
         /// compliance contract binding status
         mapping(address => bool) complianceBound;
@@ -91,7 +60,10 @@ abstract contract AbstractModuleUpgradeable is IModule, Initializable, OwnableUp
      */
     modifier onlyComplianceCall() {
         AbstractModuleStorage storage s = _getAbstractModuleStorage();
-        require(s.complianceBound[msg.sender], "only bound compliance can call");
+        require(
+            s.complianceBound[msg.sender],
+            "only bound compliance can call"
+        );
         _;
     }
 
@@ -110,7 +82,9 @@ abstract contract AbstractModuleUpgradeable is IModule, Initializable, OwnableUp
     /**
      *  @dev See {IModule-unbindCompliance}.
      */
-    function unbindCompliance(address _compliance) external onlyComplianceCall override {
+    function unbindCompliance(
+        address _compliance
+    ) external override onlyComplianceCall {
         AbstractModuleStorage storage s = _getAbstractModuleStorage();
         require(_compliance != address(0), "invalid argument - zero address");
         require(msg.sender == _compliance, "only compliance contract can call");
@@ -121,7 +95,9 @@ abstract contract AbstractModuleUpgradeable is IModule, Initializable, OwnableUp
     /**
      *  @dev See {IModule-isComplianceBound}.
      */
-    function isComplianceBound(address _compliance) external view override returns (bool) {
+    function isComplianceBound(
+        address _compliance
+    ) external view override returns (bool) {
         AbstractModuleStorage storage s = _getAbstractModuleStorage();
         return s.complianceBound[_compliance];
     }
@@ -133,12 +109,18 @@ abstract contract AbstractModuleUpgradeable is IModule, Initializable, OwnableUp
     }
 
     // solhint-disable-next-line no-empty-blocks, func-name-mixedcase
-    function __AbstractModule_init_unchained() internal onlyInitializing { }
+    function __AbstractModule_init_unchained() internal onlyInitializing {}
 
     // solhint-disable-next-line no-empty-blocks
-    function _authorizeUpgrade(address /*newImplementation*/) internal override virtual onlyOwner { }
+    function _authorizeUpgrade(
+        address /*newImplementation*/
+    ) internal virtual override onlyOwner {}
 
-    function _getAbstractModuleStorage() private pure returns (AbstractModuleStorage storage s) {
+    function _getAbstractModuleStorage()
+        private
+        pure
+        returns (AbstractModuleStorage storage s)
+    {
         // solhint-disable-next-line no-inline-assembly
         assembly {
             s.slot := _ABSTRACT_MODULE_STORAGE_LOCATION
