@@ -28,5 +28,11 @@ export function getPrivateKey() {
  */
 export function getProviderURL(network: string) {
   require("dotenv").config();
-  return process.env[`${network.toUpperCase()}_URL`] || "";
+  if (network === 'sepolia') {
+    return `https://eth-sepolia.g.alchemy.com/v2/${process.env['ALCHEMY_KEY'] || ""}`;
+  } else if (network === 'ethereum') {
+    return `https://eth-mainnet.g.alchemy.com/v2/${process.env['ALCHEMY_KEY'] || ""}`;
+  } else {
+    throw Error(`No provider URL for network: ${network}`);
+  }
 }
