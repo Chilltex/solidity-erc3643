@@ -120,11 +120,28 @@ Key events emitted for regulatory monitoring:
 - `TransferReverted` - Forced transaction reversal
 - `TokenPausedWithMetadata` - Contract emergency pause
 
-## Risk Factors
+## Security Considerations
 
-**Technology**: Smart contract vulnerabilities, blockchain dependencies  
-**Regulatory**: Jurisdictional restrictions, compliance changes  
-**Market**: Limited liquidity, variable returns, long-term commitment
+### Smart Contract Security
+
+**Implemented Protections:**
+- OpenZeppelin audited libraries and contracts
+- Transparent upgradeable proxy pattern
+- Multi-signature operations for critical functions
+- Access control with role-based permissions
+- Pausable contracts for emergency situations
+
+**Development Best Practices:**
+- Complete independent security audits before production
+- Comprehensive test coverage (unit + integration tests)
+- Formal verification of critical contract functions
+- Bug bounty programs for production deployments
+- Regular dependency updates and vulnerability monitoring
+
+### Technical Limitations
+
+- **Blockchain Dependency**: Relies on Ethereum/Polygon network availability
+- **Gas Costs**: All operations require network transaction fees
 
 ## Documentation References
 
