@@ -142,8 +142,6 @@ Key events emitted for regulatory monitoring:
 
 - **Blockchain Dependency**: Relies on Ethereum/Polygon network availability
 - **Gas Costs**: All operations require network transaction fees
-- **Upgrade Complexity**: Proxy upgrades require careful governance procedures
-- **External Dependencies**: Depends on Alchemy RPC provider availability
 
 ## Documentation References
 
